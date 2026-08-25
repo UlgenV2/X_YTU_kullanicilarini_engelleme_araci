@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "YTÜ Engelleyici - Mutlak Huzur",
+  "version": "10.0",
+  "description": "Biosunda YTÜ yazan kişilerin Tweetlerini ve YTÜ ile alakalı hiçbir şeyi görmemek, yani huzur ve mutluluk için oluşturduğum bir eklenti.",
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*", "*://*.x.com/*", "*://twitter.com/*", "*://*.twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    }
+  ]
+}
