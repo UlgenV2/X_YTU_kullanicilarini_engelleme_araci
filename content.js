@@ -2,12 +2,10 @@ const YTU_KEYWORDS = ["ytü", "ytu", "yıldız teknik", "yildiz teknik", "yildiz
 
 const badHandles = new Set(JSON.parse(localStorage.getItem('ytu_bad_handles') || '[]'));
 
-// CSS Kıyamet Motorunu Kuruyoruz
 const styleNode = document.createElement('style');
 styleNode.id = 'ytu-annihilator';
 document.documentElement.appendChild(styleNode);
 
-// Bu fonksiyon çalıştığı an, tarayıcı o kişileri fiziksel olarak ekranda barındıramaz
 function triggerDoomsday() {
     let css = `article[data-ytu-nuke="true"] { display: none !important; visibility: hidden !important; opacity: 0 !important; height: 0 !important; } \n`;
 
@@ -21,7 +19,6 @@ function triggerDoomsday() {
     styleNode.textContent = css;
 }
 
-// Başlangıçta motoru ateşle
 triggerDoomsday();
 
 function markBad(handle) {
@@ -41,7 +38,6 @@ function isYtu(text) {
     return YTU_KEYWORDS.some(k => lower.includes(k));
 }
 
-// 1. Ağ Trafiği İstihbaratı
 const seenObjs = new WeakSet();
 function scanData(obj) {
     if (!obj || typeof obj !== 'object' || seenObjs.has(obj)) return;
@@ -74,7 +70,6 @@ JSON.parse = function(t, r) {
     return res;
 };
 
-// 2. DOM Yedeği (İçinde direkt YTÜ geçen masum görünümlü tweetler veya Hover Cardlar için)
 function forceRecheck() {
     document.querySelectorAll('article[data-testid="tweet"]:not([data-ytu-nuke="true"])').forEach(article => {
         if (isYtu(article.innerText)) {
